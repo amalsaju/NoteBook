@@ -1,3 +1,4 @@
+import CopyPasteClipboard from './components/CopyPasteClipboard';
 import OpenFileDialog from './components/OpenFileDialog';
 import ShortcutKeys from './components/ShortcutKeys';
 
@@ -6,6 +7,8 @@ const App = () => {
         <>
             <OpenFileDialog />
             <ShortcutKeys />
+            <br />
+            <CopyPasteClipboard />
         </>
     );
 }
