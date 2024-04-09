@@ -1,9 +1,11 @@
-import FileButton from './components/Button';
+import OpenFileDialog from './components/OpenFileDialog';
+import ShortcutKeys from './components/ShortcutKeys';
 
 const App = () => {
     return (
         <>
-            <FileButton />
+            <OpenFileDialog />
+            <ShortcutKeys />
         </>
     );
 }
