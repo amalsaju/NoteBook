@@ -1,5 +1,11 @@
-import { createRoot } from 'react-dom/client';
-import Para from './Para';
+import FileButton from './components/Button';
 
-const root = createRoot(document.body);
-root.render(<Para />);
+const App = () => {
+    return (
+        <>
+            <FileButton />
+        </>
+    );
+}
+
+export default App;

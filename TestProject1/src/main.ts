@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu, MenuItem } from 'electron';
 import path from 'path';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -48,6 +48,42 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+const menuTemplate = [
+  {label: 'File',
+    submenu: [
+      {role: 'Open'},
+      {role: 'Quit'},
+    ]
+  },
+  {label: 'Edit',
+    submenu: [
+      {role: 'Copy'},
+      {role: 'Cut'},
+      {role: 'Paste'}
+    ]
+  }
+];
+
+const menu = new Menu();
+menu.append(new MenuItem({
+  label: 'File',
+  submenu: [
+    {label: 'Open'},
+    {label: 'Quit', click() {app.quit()}}
+  ]
+}));
+menu.append(new MenuItem({label: 'Edit',
+submenu: [
+  {role: 'undo'},
+  {role: 'redo'},
+  {role: 'copy'},
+  {role: 'cut'},
+  {role: 'paste'}
+]
+}));
+Menu.setApplicationMenu(menu);
+
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
