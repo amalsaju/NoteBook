@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+
 import { useFilePicker } from "use-file-picker";
 
 
@@ -14,9 +14,9 @@ const OpenFileDialog = () => {
 
     return (
         <>
-        <Button variant="contained" onClick={() => openFilePicker()}>
+        <button onClick={() => openFilePicker()}>
             Select File
-        </Button>
+        </button>
         <br />
         {filesContent.map((file, index) => (
             <div>
