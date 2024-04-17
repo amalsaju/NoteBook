@@ -14,7 +14,9 @@ const MyMarkdown= () => {
 
 return (
   <>
-    <MDXEditor ref={ref} markdown={markdownValue} plugins={[headingsPlugin(), listsPlugin()]} onChange={() => setMarkdownValue(ref.current?.getMarkdown())} />
+    <MDXEditor ref={ref} markdown={markdownValue} plugins={[headingsPlugin(), listsPlugin()]} 
+    onChange={() => setMarkdownValue(ref.current?.getMarkdown())} 
+    contentEditableClassName='prose prose-sm leading-[0.2rem]' />
   </>
 );
 

@@ -21,6 +21,7 @@
     "@electron-forge/plugin-fuses": "^7.2.0",
     "@electron-forge/plugin-vite": "^7.3.1",
     "@electron/fuses": "^1.7.0",
+    "@tailwindcss/typography": "^0.5.12",
     "@types/react": "^18.2.74",
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-dom": "^18.2.24",
