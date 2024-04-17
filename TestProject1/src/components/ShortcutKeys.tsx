@@ -6,7 +6,7 @@ const ShortcutKeys = () => {
 
     const [shortKey, setShortKey] = useState('ctrl+o');
 
-    useHotkeys(shortKey, () => console.log("Write to console"))
+    useHotkeys(shortKey, () => console.log("Write to console"));
 
     return(
         <>
