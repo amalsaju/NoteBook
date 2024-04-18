@@ -13,11 +13,11 @@ const MyMarkdown= () => {
     const ref = React.useRef<MDXEditorMethods>(null);
 
 return (
-  <>
+  <div className='block'>
     <MDXEditor ref={ref} markdown={markdownValue} plugins={[headingsPlugin(), listsPlugin()]} 
     onChange={() => setMarkdownValue(ref.current?.getMarkdown())} 
-    contentEditableClassName='prose prose-sm leading-[0.2rem]' />
-  </>
+    contentEditableClassName='prose prose-md leading-[1rem] max-w-fit' autoFocus/>
+  </div>
 );
 
 }
