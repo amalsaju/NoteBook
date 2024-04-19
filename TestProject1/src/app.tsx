@@ -1,26 +1,11 @@
 
-import CopyPasteClipboard from './components/CopyPasteClipboard';
-import EditableTitle from './components/EditableTitle';
 import MyMarkdown from './components/Markdown';
-import OpenFileDialog from './components/OpenFileDialog';
-import ShortcutKeys from './components/ShortcutKeys';
+import TitleBar from './components/TitleBar/TitleBar';
 
 const App = () => {
-    // return (
-    //     <>
-    //         <OpenFileDialog />
-    //         <ShortcutKeys />
-    //         <br />
-    //         <CopyPasteClipboard />
-    //         <br />
-    //         <EditableTitle />
-    //         <br />
-    //         <MyMarkdown />
-    //     </>
-    // );
-
     return (
         <>
+            <TitleBar />
             < MyMarkdown />
         </>
     );

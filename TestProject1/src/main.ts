@@ -11,6 +11,8 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    titleBarStyle: 'hidden',
+    title: 'NoteBook',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
@@ -50,17 +52,19 @@ app.on('activate', () => {
 });
 
 const menuTemplate = [
-  {label: 'File',
+  {
+    label: 'File',
     submenu: [
-      {role: 'Open'},
-      {role: 'Quit'},
+      { role: 'Open' },
+      { role: 'Quit' },
     ]
   },
-  {label: 'Edit',
+  {
+    label: 'Edit',
     submenu: [
-      {role: 'Copy'},
-      {role: 'Cut'},
-      {role: 'Paste'}
+      { role: 'Copy' },
+      { role: 'Cut' },
+      { role: 'Paste' }
     ]
   }
 ];
@@ -69,18 +73,19 @@ const menu = new Menu();
 menu.append(new MenuItem({
   label: 'File',
   submenu: [
-    {label: 'Open'},
-    {label: 'Quit', click() {app.quit()}}
+    { label: 'Open' },
+    { label: 'Quit', click() { app.quit() } }
   ]
 }));
-menu.append(new MenuItem({label: 'Edit',
-submenu: [
-  {role: 'undo'},
-  {role: 'redo'},
-  {role: 'copy'},
-  {role: 'cut'},
-  {role: 'paste'}
-]
+menu.append(new MenuItem({
+  label: 'Edit',
+  submenu: [
+    { role: 'undo' },
+    { role: 'redo' },
+    { role: 'copy' },
+    { role: 'cut' },
+    { role: 'paste' }
+  ]
 }));
 Menu.setApplicationMenu(menu);
 
