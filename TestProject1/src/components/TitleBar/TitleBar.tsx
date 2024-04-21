@@ -1,14 +1,16 @@
-import MenuFunctions from "./MenuFunctions";
+import MenuFunctions from "./MenuFunctions/MenuFunctions";
 import WindowFunctions from "./WindowFunctions";
 
 
 const TitleBar = () => {
 
     return (
-        <div className="block bg-gray-800 max-w-7xl">
-            <MenuFunctions />
-            <span className="block-inline">NoteBook</span>
-            <WindowFunctions />
+        <div className="flex bg-gray-800 max-w-7xl 
+        border-b-slate-500 
+        border-b-2">
+            <MenuFunctions className="w-1/3 flex" />
+            <span className=" w-1/3 block-inline">NoteBook</span>
+            <WindowFunctions className="w-1/3 self-end" />
         </div>
     );
 
