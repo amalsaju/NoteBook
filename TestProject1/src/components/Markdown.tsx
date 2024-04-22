@@ -16,7 +16,7 @@ return (
   <div className='block mr-3'>
     <MDXEditor ref={ref} markdown={markdownValue} plugins={[headingsPlugin(), listsPlugin()]} 
     onChange={() => setMarkdownValue(ref.current?.getMarkdown())} 
-    contentEditableClassName='prose prose-lg leading-[1rem] max-w-fit' autoFocus/>
+    contentEditableClassName='prose m-1 text-wrap leading-tight prose-p:m-1 max-w-none' autoFocus/>
   </div>
 );
 
