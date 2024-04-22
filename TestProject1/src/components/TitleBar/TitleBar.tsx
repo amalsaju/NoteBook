@@ -5,7 +5,7 @@ import WindowFunctions from "./WindowFunctions";
 const TitleBar = () => {
 
     return (
-        <div className="flex bg-gray-800 max-w-7xl 
+        <div className="flex bg-gray-800 max-w
         border-b-slate-500 
         border-b-2 draggable">
             <MenuFunctions className="w-1/3 flex" />
