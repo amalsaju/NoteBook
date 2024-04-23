@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, MenuItem } from 'electron';
+import { app, BrowserWindow, Menu, MenuItem, dialog, ipcMain } from 'electron';
 import path from 'path';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -87,7 +87,11 @@ menu.append(new MenuItem({
     { role: 'paste' }
   ]
 }));
-Menu.setApplicationMenu(menu);
+
+
+ipcMain.on('onFileSave', ( ) => {
+  dialog.showSaveDialog({});
+})
 
 
 // In this file you can include the rest of your app's specific main process
