@@ -11,7 +11,7 @@ if (!process.contextIsolated) {
 
 try {
     contextBridge.exposeInMainWorld('electronAPI', {
-        onFileSave: () => ipcRenderer.send('onFileSave'),
+        onFileSave: () => ipcRenderer.invoke('onFileSave'),
     })
 } catch (err) {
     console.log(err);

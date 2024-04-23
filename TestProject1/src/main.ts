@@ -89,7 +89,7 @@ menu.append(new MenuItem({
 }));
 
 
-ipcMain.on('onFileSave', ( ) => {
+ipcMain.handle('onFileSave', ( ) => {
   dialog.showSaveDialog({});
 })
 
