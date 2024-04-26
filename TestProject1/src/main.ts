@@ -1,5 +1,8 @@
 import { app, BrowserWindow, Menu, MenuItem, dialog, ipcMain } from 'electron';
 import path from 'path';
+import { defaultPath } from './shared/settings';
+
+var fs = require('fs');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -89,9 +92,32 @@ menu.append(new MenuItem({
 }));
 
 
-ipcMain.handle('onFileSave', ( ) => {
-  dialog.showSaveDialog({});
-})
+if (!fs.existsSync(defaultPath)) fs.mkdirSync(defaultPath);
+
+const saveOptions = {
+  title: 'Save file',
+  defaultPath: defaultPath,
+  filters: [
+    { name: 'Markdown Files', extensions: ['md'] },
+    { name: 'Text Files', extensions: ['txt'] }
+  ],
+}
+
+ipcMain.handle('onFileSave', (event, ...args) => {
+  dialog.showSaveDialog(saveOptions).then(file => {
+    console.log(file.canceled);
+    if (!file.canceled) {
+      console.log(file.filePath.toString());
+      console.log("Received data:" + args);
+      // Creating and Writing to the sample.txt file 
+      fs.writeFile(file.filePath.toString(),
+      args[0], function (err) {
+          if (err) throw err;
+          console.log('Saved!');
+        });
+    }
+  })
+});
 
 
 // In this file you can include the rest of your app's specific main process

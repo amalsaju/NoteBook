@@ -17,7 +17,7 @@ const MyMarkdown = () => {
   const ref = React.useRef<MDXEditorMethods>(null);
 
   const saveKey = 'ctrl+s';
-  useHotkeys(saveKey, () => window.electronAPI.onFileSave());
+  useHotkeys(saveKey, () => window.electronAPI.onFileSave("Hellow world!"));
 
   return (
     <div className='block mr-3'>
