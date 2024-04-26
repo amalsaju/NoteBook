@@ -94,7 +94,7 @@ menu.append(new MenuItem({
 
 if (!fs.existsSync(defaultPath)) fs.mkdirSync(defaultPath);
 
-const saveOptions = {
+const saveFileDialogOptions = {
   title: 'Save file',
   defaultPath: defaultPath,
   filters: [
@@ -104,19 +104,41 @@ const saveOptions = {
 }
 
 ipcMain.handle('onFileSave', (event, ...args) => {
-  dialog.showSaveDialog(saveOptions).then(file => {
+  dialog.showSaveDialog(saveFileDialogOptions).then(file => {
     console.log(file.canceled);
     if (!file.canceled) {
       console.log(file.filePath.toString());
       console.log("Received data:" + args);
       // Creating and Writing to the sample.txt file 
       fs.writeFile(file.filePath.toString(),
-      args[0], function (err) {
+        args[0], function (err) {
           if (err) throw err;
           console.log('Saved!');
         });
     }
   })
+});
+
+const openFileDialogOptions = {
+  title: 'Load File',
+  defaultPath: defaultPath,
+  filters: [
+    { name: 'Markdown Files', extensions: ['md'] },
+    { name: 'Text Files', extensions: ['txt'] }
+  ],
+}
+
+ipcMain.handle('onFileLoad', (event, ...args) => {
+  dialog.showOpenDialog(openFileDialogOptions).then(file => {
+    console.log(file.canceled);
+    if (!file.canceled) {
+      console.log(file.filePaths[0].toString());
+      
+      const result = fs.readFileSync(file.filePaths[0], { encoding: 'utf8' });
+      console.log("Received data:" + result);
+      return result;
+    }
+  });
 });
 
 

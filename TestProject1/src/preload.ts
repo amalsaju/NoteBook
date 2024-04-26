@@ -12,7 +12,9 @@ if (!process.contextIsolated) {
 try {
     contextBridge.exposeInMainWorld('electronAPI', {
         //Electron recommends using ipcRenderer.invoke() whereever possible
-        onFileSave: (dataToBeWritten:string) => ipcRenderer.invoke('onFileSave', dataToBeWritten),
+        onFileSave: (dataToBeWritten: string) => ipcRenderer.invoke('onFileSave', dataToBeWritten),
+        onFileLoad: () => ipcRenderer.invoke('onFileLoad')
+
     })
 } catch (err) {
     console.log(err);

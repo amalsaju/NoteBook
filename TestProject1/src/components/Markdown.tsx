@@ -8,7 +8,7 @@ import '@mdxeditor/editor/style.css'
 import React from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 import path from 'path';
-
+import { fileLoadKey, fileSaveKey } from '../shared/settings';
 
 
 const MyMarkdown = () => {
@@ -16,8 +16,13 @@ const MyMarkdown = () => {
   const [markdownValue, setMarkdownValue] = useState('sdkfljsldkjflksjfklsjdlfjslkdfjsjdklfjlsdjflkjsdlkfsdjfksdjfljsdlfjlksdjflksdjflkjsdkfjskdljfklsjdflkjsdlkfjklsdjflkjsdklfjskljdfklsjdfljsdklfjskldjflksjdflkjsdkjflsdjflksdjflkjsdlkfjsdlkfjlksdjflksdjflksdjfkjsdklfjslkdjfklsdjflksdjlfkjsdlkfjlksdjflksdf');
   const ref = React.useRef<MDXEditorMethods>(null);
 
-  const saveKey = 'ctrl+s';
-  useHotkeys(saveKey, () => window.electronAPI.onFileSave("Hellow world!"));
+  useHotkeys(fileSaveKey, () => window.electronAPI.onFileSave("Hellow world!"));
+  useHotkeys(fileLoadKey, () => {
+    const result:string = window.electronAPI.onFileLoad();
+    console.log("the result received is:" + result);
+    setMarkdownValue(result);
+
+  });
 
   return (
     <div className='block mr-3'>
