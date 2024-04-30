@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { MDXEditor, MDXEditorMethods, listsPlugin, markdown$, markdownShortcutPlugin } from '@mdxeditor/editor'
 import { headingsPlugin } from '@mdxeditor/editor'
@@ -11,6 +11,7 @@ import path from 'path';
 import { fileLoadKey, fileSaveKey } from '../shared/settings';
 import { useAtom } from 'jotai';
 import { markdownValueStore } from '../store/store';
+import { File } from '../shared/types';
 
 
 const MyMarkdown = () => {
@@ -39,12 +40,23 @@ const MyMarkdown = () => {
   // its done automatically
 
   // move the short cut key somewhere else
+  const editorRef = useRef<MDXEditorMethods>(null)
+  const newFile = new File();
+  const selectedFile = newFile;
+  const handleChange = () => {
+    // save selectedFile
+  }
 
   return (
     <div className='block mr-3'>
-      <MDXEditor markdown={'hello'} plugins={[headingsPlugin(), listsPlugin(), markdownShortcutPlugin()]}
+      <MDXEditor
+        ref={editorRef}
+        key={selectedFile.uid} markdown={selectedFile.content} onChange={handleChange}
+        plugins={[headingsPlugin(), listsPlugin(), markdownShortcutPlugin()]}
         contentEditableClassName='prose prose-p:leading-normal prose-p:m-0 
-        max-w-none' autoFocus />
+        max-w-none'
+        autoFocus
+      />
     </div>
   );
 
