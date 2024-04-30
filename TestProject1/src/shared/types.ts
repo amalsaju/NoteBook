@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from '@types/uuid';
 
 // export interface FileExtension {
 //     type: 'txt' | 'md';
@@ -23,12 +23,11 @@ export class File {
         this.date_created = new Date();
         this.last_modified = new Date();
 
-        this.name = name;
-        this.content = content;
-        this.extension = extension;
+        this.name = name ? name : 'Untitiled';
+        this.content = content ? content : '';
+        this.extension = extension ? extension : FileExtension.text;
     }
 }
-
 
 export interface TabFilesList {
     fileList: File[],

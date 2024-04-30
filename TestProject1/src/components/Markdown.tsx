@@ -10,7 +10,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import path from 'path';
 import { fileLoadKey, fileSaveKey } from '../shared/settings';
 import { useAtom } from 'jotai';
-import { markdownValueStore } from '../store/store';
+import { markdownValueStore, selectedFileAtom } from '../store/store';
 import { File } from '../shared/types';
 
 
@@ -40,11 +40,12 @@ const MyMarkdown = () => {
   // its done automatically
 
   // move the short cut key somewhere else
+  const [selectedFile, setFile] = useAtom(selectedFileAtom);
   const editorRef = useRef<MDXEditorMethods>(null)
-  const newFile = new File();
-  const selectedFile = newFile;
-  const handleChange = () => {
+  const handleChange = (value: string) => {
     // save selectedFile
+    setFile({ ...selectedFile, content: value });
+    console.log(selectedFile.content);
   }
 
   return (
