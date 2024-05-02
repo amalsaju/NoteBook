@@ -3,6 +3,7 @@
 
 
 import { contextBridge, ipcRenderer } from 'electron'
+import { File } from './shared/types';
 
 if (!process.contextIsolated) {
     throw new Error('contextIsolation must be enabled in the BrowserWindow')
@@ -12,7 +13,7 @@ if (!process.contextIsolated) {
 try {
     contextBridge.exposeInMainWorld('electronAPI', {
         //Electron recommends using ipcRenderer.invoke() whereever possible
-        onFileSave: (dataToBeWritten: string) => ipcRenderer.invoke('onFileSave', dataToBeWritten),
+        onFileSave: (dataToBeWritten: File) => ipcRenderer.invoke('onFileSave', dataToBeWritten),
         onFileLoad: () => ipcRenderer.invoke('onFileLoad')
 
     })

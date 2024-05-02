@@ -1,6 +1,7 @@
 import { app, BrowserWindow, Menu, MenuItem, dialog, ipcMain } from 'electron';
 import path from 'path';
 import { defaultPath } from './shared/settings';
+import { File } from './shared/types';
 
 var fs = require('fs');
 
@@ -108,10 +109,11 @@ ipcMain.handle('onFileSave', (event, ...args) => {
     console.log(file.canceled);
     if (!file.canceled) {
       console.log(file.filePath.toString());
-      console.log("Received data:" + args);
+      const tempFile: File = args[0];
+      console.log("Received data:" + tempFile.content);
       // Creating and Writing to the sample.txt file 
       fs.writeFile(file.filePath.toString(),
-        args[0], function (err) {
+        args[0].content.toString(), function (err) {
           if (err) throw err;
           console.log('Saved!');
         });
@@ -133,7 +135,7 @@ ipcMain.handle('onFileLoad', (event, ...args) => {
     console.log(file.canceled);
     if (!file.canceled) {
       console.log(file.filePaths[0].toString());
-      
+
       const result = fs.readFileSync(file.filePaths[0], { encoding: 'utf8' });
       console.log("Received data:" + result);
       return result;
