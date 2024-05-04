@@ -1,11 +1,7 @@
 import { app, BrowserWindow, Menu, MenuItem, dialog, ipcMain } from 'electron';
 import path from 'path';
-<<<<<<< HEAD
 import { notebookFilesPath } from './shared/settings';
-=======
-import { defaultPath } from './shared/settings';
 import { File } from './shared/types';
->>>>>>> e43715429a405f2bb63b3b3041cf129f81ebb40d
 
 var fs = require('fs');
 
