@@ -19,10 +19,7 @@ const MyMarkdown = () => {
   // const [markdownValue, setMarkdownValue] = useAtom(markdownValueStore);
   // const ref = React.useRef<MDXEditorMethods>(null);
 
-  // useHotkeys(fileSaveKey, () => {
-  //   console.log("Save key pressed!");
-  //   window.electronAPI.onFileSave("Hellow world!");
-  // });
+
   // useHotkeys(fileLoadKey, () => {
   //   console.log("Open key pressed!");
   //   const result:string = window.electronAPI.onFileLoad();
@@ -47,6 +44,20 @@ const MyMarkdown = () => {
     setFile({ ...selectedFile, content: value });
     console.log(selectedFile.content);
   }
+
+  useHotkeys(fileSaveKey, () => {
+    console.log("Save key pressed!");
+    window.electronAPI.onFileSave(selectedFile);
+  });
+
+  useHotkeys(fileLoadKey, () => {
+    console.log("Open key pressed!");
+    const result: string = window.electronAPI.onFileLoad();
+    console.log("the result received is:" + result);
+    // const tempFile: File = new File();
+    // tempFile.content = result;
+    // setFile(tempFile);
+  });
 
   return (
     <div className='block mr-3'>
