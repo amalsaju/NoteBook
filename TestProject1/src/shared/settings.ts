@@ -1,5 +1,5 @@
 
-export const defaultPath = 'C:\\Users\\amals\\Documents\\NoteBook_Files';
+export const notebookFilesPath = '\\Documents\\NoteBook_Files';
 
 //Shortcut keys
 export const fileSaveKey = 'ctrl+s';

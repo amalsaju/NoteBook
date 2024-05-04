@@ -1,6 +1,6 @@
 import { app, BrowserWindow, Menu, MenuItem, dialog, ipcMain } from 'electron';
 import path from 'path';
-import { defaultPath } from './shared/settings';
+import { notebookFilesPath } from './shared/settings';
 
 var fs = require('fs');
 
@@ -8,6 +8,8 @@ var fs = require('fs');
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
+
+const defaultPath = app.getPath('home') + notebookFilesPath;
 
 const createWindow = () => {
   // Create the browser window.
@@ -51,46 +53,9 @@ app.on('activate', () => {
   // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
+
   }
 });
-
-const menuTemplate = [
-  {
-    label: 'File',
-    submenu: [
-      { role: 'Open' },
-      { role: 'Quit' },
-    ]
-  },
-  {
-    label: 'Edit',
-    submenu: [
-      { role: 'Copy' },
-      { role: 'Cut' },
-      { role: 'Paste' }
-    ]
-  }
-];
-
-const menu = new Menu();
-menu.append(new MenuItem({
-  label: 'File',
-  submenu: [
-    { label: 'Open' },
-    { label: 'Quit', click() { app.quit() } }
-  ]
-}));
-menu.append(new MenuItem({
-  label: 'Edit',
-  submenu: [
-    { role: 'undo' },
-    { role: 'redo' },
-    { role: 'copy' },
-    { role: 'cut' },
-    { role: 'paste' }
-  ]
-}));
-
 
 if (!fs.existsSync(defaultPath)) fs.mkdirSync(defaultPath);
 
@@ -111,7 +76,7 @@ ipcMain.handle('onFileSave', (event, ...args) => {
       console.log("Received data:" + args);
       // Creating and Writing to the sample.txt file 
       fs.writeFile(file.filePath.toString(),
-        args[0], function (err) {
+        args[0], function (err:any) {
           if (err) throw err;
           console.log('Saved!');
         });
@@ -133,7 +98,7 @@ ipcMain.handle('onFileLoad', (event, ...args) => {
     console.log(file.canceled);
     if (!file.canceled) {
       console.log(file.filePaths[0].toString());
-      
+
       const result = fs.readFileSync(file.filePaths[0], { encoding: 'utf8' });
       console.log("Received data:" + result);
       return result;

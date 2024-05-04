@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from '@types/uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 // export interface FileExtension {
 //     type: 'txt' | 'md';
