@@ -65,7 +65,7 @@ const MyMarkdown = () => {
         ref={editorRef}
         key={selectedFile.uid} markdown={selectedFile.content} onChange={handleChange}
         plugins={[headingsPlugin(), listsPlugin(), markdownShortcutPlugin()]}
-        contentEditableClassName='prose prose-p:leading-normal prose-p:m-0 
+        contentEditableClassName='prose prose-p:leading-normal prose-p:m-0 prose-ul:leading-none
         max-w-none'
         autoFocus
       />
