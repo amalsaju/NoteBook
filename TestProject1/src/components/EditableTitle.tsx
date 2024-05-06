@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useAtom } from 'jotai';
+import { selectedFileName } from '../store/store';
+import { File } from 'src/shared/types';
+import { useState } from 'react';
 
+export interface EditableTitleProps {
+    btn_classname: string;
+    input_classname: string;
+}
 
-const EditableTitle = () => {
+const EditableTitle = (props: EditableTitleProps) => {
 
-    const [title, setTitle] = useState('Untitled');
+    const [title, setTitle] = useAtom(selectedFileName);
     const [clicked, setClicked] = useState(true);
 
     return (
         <>
-            {clicked ? <button onClick={() => setClicked(!clicked)}>{title + '.md'}</button> :
-                <input value={title} onChange={e => setTitle(e.target.value)} onBlur={() => setClicked(!clicked)} autoFocus/>}
+            {clicked ? <button className={props.btn_classname} onClick={() => setClicked(!clicked)}>{title + '.md'}</button> :
+                <input className={props.input_classname} value={title} onChange={e => setTitle(e.target.value)} onBlur={() => setClicked(!clicked)} autoFocus />}
         </>
     );
 
