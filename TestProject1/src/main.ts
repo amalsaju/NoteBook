@@ -33,8 +33,6 @@ const createWindow = () => {
     mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
   }
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
@@ -80,7 +78,7 @@ ipcMain.handle('onFileSave', (event, ...args) => {
       console.log("Received data:" + tempFile.content);
       // Creating and Writing to the sample.txt file 
       fs.writeFile(file.filePath.toString(),
-        args[0].content.toString(), function (err:any) {
+        args[0].content.toString(), function (err: any) {
           if (err) throw err;
           console.log('Saved!');
         });
