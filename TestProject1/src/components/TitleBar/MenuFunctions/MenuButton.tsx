@@ -1,13 +1,14 @@
 
 export interface MenuButtonProps {
     text: string;
+    className?: string;
 }
 
 const MenuButton = (menuButtonProps: MenuButtonProps) => {
     return (
-        <div>
+        <button className={menuButtonProps.className}>
             {menuButtonProps.text}
-        </div>
+        </button>
     );
 }
 

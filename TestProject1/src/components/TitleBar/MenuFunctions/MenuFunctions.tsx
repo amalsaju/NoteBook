@@ -8,7 +8,7 @@ const MenuFunctions = (menuFunctionProps: MenuFunctionProps) => {
 
     return (
         <div className={menuFunctionProps.className}>
-            <MenuButton text="File" />
+            <MenuButton className="hover:bg-sky-700 " text="File" />
             <MenuButton text="View" />
             <MenuButton text="Edit" />
             <MenuButton text="Help" />

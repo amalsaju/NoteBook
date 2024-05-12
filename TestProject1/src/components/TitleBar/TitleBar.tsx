@@ -5,12 +5,11 @@ import WindowFunctions from "./WindowFunctions";
 const TitleBar = () => {
 
     return (
-        <div className="grid gap-4 grid-cols-3 grid-rows-1 bg-gray-800 max-w-none
-        border-b-slate-500 text-white 
-        border-b-2 draggable">
-            <MenuFunctions className="flex" />
-            <div className="place-self-center">NoteBook</div>
-            <WindowFunctions className="place-self-end" />
+        <div className="inline-flex bg-gray-800 w-full
+        border-b-slate-500 text-white border-b-2 draggable">
+            <MenuFunctions className="flex gap-2 ml-2" />
+            <div className="w-1/3 grow text-center">NoteBook</div>
+            <WindowFunctions className="grow-0 place-self-end mr-2" />
         </div>
     );
 
