@@ -16,7 +16,7 @@ const EditableTitle = (props: EditableTitleProps) => {
     return (
         <>
             {clicked ? <button className={props.btn_classname} onClick={() => setClicked(!clicked)}>{title + '.md'}</button> :
-                <input className={props.input_classname} value={title} onChange={e => setTitle(e.target.value)} onBlur={() => setClicked(!clicked)} autoFocus />}
+                <input className={props.input_classname} value={title} onChange={e => setTitle(e.target.value)} onBlur={() => setClicked(!clicked)} onKeyDown={e => e.key === 'Enter' && setClicked(!clicked)} autoFocus />}
         </>
     );
 
