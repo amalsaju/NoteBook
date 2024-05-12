@@ -3,6 +3,8 @@ import path from 'path';
 import { notebookFilesPath } from './shared/settings';
 import { File } from './shared/types';
 
+
+
 var fs = require('fs');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -32,7 +34,6 @@ const createWindow = () => {
   } else {
     mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
   }
-
 };
 
 // This method will be called when Electron has finished
