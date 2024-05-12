@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer utilities {
+
+  /* ul, ol colours */
+  ::marker {
+    color: rgb(27, 145, 166) !important;
+  }
 
   .draggable {
     -webkit-app-region: drag;
@@ -14,8 +18,8 @@
     width: 14px;
     height: 14px;
   }
-
   ::-webkit-scrollbar-track {
+
     background: #f7f4ed;
   }
 
