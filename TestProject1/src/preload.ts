@@ -14,8 +14,15 @@ try {
     contextBridge.exposeInMainWorld('electronAPI', {
         //Electron recommends using ipcRenderer.invoke() whereever possible
         onFileSave: (dataToBeWritten: File) => ipcRenderer.invoke('onFileSave', dataToBeWritten),
-        onFileLoad: () => ipcRenderer.invoke('onFileLoad')
-
+        onFileLoad: async () => {
+            const response = await ipcRenderer.invoke('onFileLoad');
+            console.log("Result in preload: " + response);
+            return response;
+        },
+        closeButtonClick: () => ipcRenderer.invoke('closeButtonClick'),
+        minimizeButtonClick: () => ipcRenderer.invoke('minimizeButtonClick'),
+        maximizeButtonClick: () => ipcRenderer.invoke('maximizeButtonClick'),
+        restoreButtonClick: () => ipcRenderer.invoke('restoreButtonClick'),
     })
 } catch (err) {
     console.log(err);

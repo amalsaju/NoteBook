@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, MenuItem, dialog, ipcMain } from 'electron';
+import { app, BrowserWindow, Menu, MenuItem, dialog, ipcMain,  } from 'electron';
 import path from 'path';
 import { notebookFilesPath } from './shared/settings';
 import { File } from './shared/types';
@@ -102,12 +102,34 @@ ipcMain.handle('onFileLoad', (event, ...args) => {
     if (!file.canceled) {
       console.log(file.filePaths[0].toString());
 
-      const result = fs.readFileSync(file.filePaths[0], { encoding: 'utf8' });
-      console.log("Received data:" + result);
+      const result: string = fs.readFileSync(file.filePaths[0], { encoding: 'utf8' });
+      console.log("Result in main:" + result);
       return result;
     }
   });
 });
+
+ipcMain.handle('closeButtonClick', (event, ...args) => {
+  // save the files
+  // app.quit();
+  BrowserWindow.getFocusedWindow().close();
+})
+
+ipcMain.handle('minimizeButtonClick', (event, ...args) => {
+  // save the files
+  BrowserWindow.getFocusedWindow().minimize();
+})
+
+ipcMain.handle('maximizeButtonClick', (event, ...args) => {
+  // save the files
+  BrowserWindow.getFocusedWindow().maximize();
+  BrowserWindow.getFocusedWindow().restore();
+})
+
+ipcMain.handle('restoreButtonClick', (event, ...args) => {
+  // save the files
+  BrowserWindow.getFocusedWindow().restore();
+})
 
 
 // In this file you can include the rest of your app's specific main process

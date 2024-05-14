@@ -1,5 +1,12 @@
 import MenuButton from "./MenuButton";
 
+export enum MenuFunctionType {
+    file = 'file',
+    view = 'view',
+    edit = 'edit',
+    help = 'help'
+}
+
 export interface MenuFunctionProps {
     className: string;
 }

@@ -34,9 +34,9 @@ const MyMarkdown = () => {
     window.electronAPI.onFileSave(selectedFile);
   });
 
-  useHotkeys(fileLoadKey, () => {
+  useHotkeys(fileLoadKey, async () => {
     console.log("Open key pressed!");
-    const result: string = window.electronAPI.onFileLoad();
+    const result = await window.electronAPI.onFileLoad();
     console.log("the result received is:" + result);
     // const tempFile: File = new File();
     // tempFile.content = result;
