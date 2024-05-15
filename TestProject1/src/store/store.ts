@@ -14,3 +14,5 @@ export const notebookFiles = atom<File[]>([]);
 export const addFiles = atom(null, (get, set, files: File[]) => {
     set(notebookFiles, [...get(notebookFiles), ...files]);
 });
+
+export const maximizeWindowButtonClicked = atom(false);

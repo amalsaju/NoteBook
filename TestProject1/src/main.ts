@@ -123,7 +123,6 @@ ipcMain.handle('minimizeButtonClick', (event, ...args) => {
 ipcMain.handle('maximizeButtonClick', (event, ...args) => {
   // save the files
   BrowserWindow.getFocusedWindow().maximize();
-  BrowserWindow.getFocusedWindow().restore();
 })
 
 ipcMain.handle('restoreButtonClick', (event, ...args) => {
