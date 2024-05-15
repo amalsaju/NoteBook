@@ -10,23 +10,23 @@ export enum FileExtension {
 }
 
 
-export class File {
-    readonly uid: string;
+export interface File {
+    uid: string;
     name: string;
     content: string;
     extension: FileExtension;
-    readonly date_created: Date;
+    date_created: Date;
     last_modified: Date;
 
-    constructor(name?: string, content?: string, extension?: FileExtension) {
-        this.uid = uuidv4();
-        this.date_created = new Date();
-        this.last_modified = new Date();
+    // constructor(name?: string, content?: string, extension?: FileExtension) {
+    //     this.uid = uuidv4();
+    //     this.date_created = new Date();
+    //     this.last_modified = new Date();
 
-        this.name = name ? name : 'Untitiled';
-        this.content = content ? content : '';
-        this.extension = extension ? extension : FileExtension.text;
-    }
+    //     this.name = name ? name : 'Untitiled';
+    //     this.content = content ? content : '';
+    //     this.extension = extension ? extension : FileExtension.text;
+    // }
 }
 
 export interface TabFilesList {
