@@ -7,8 +7,8 @@ import { PrimitiveAtom, atom, useAtom } from "jotai";
 import { maximizeWindowButtonClicked } from "../../store/store";
 
 
-export interface MenuFunctionProps {
-    className: string;
+export type MenuFunctionProps = {
+    className: string
 }
 
 const WindowFunctions = (menuFunctionProps: MenuFunctionProps) => {

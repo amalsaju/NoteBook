@@ -1,7 +1,7 @@
 
-export interface MenuButtonProps {
-    text: string;
-    className?: string;
+export type MenuButtonProps = {
+    text: string,
+    className?: string
 }
 
 const MenuButton = (menuButtonProps: MenuButtonProps) => {

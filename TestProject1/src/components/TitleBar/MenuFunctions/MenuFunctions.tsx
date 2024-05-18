@@ -7,8 +7,8 @@ export enum MenuFunctionType {
     help = 'help'
 }
 
-export interface MenuFunctionProps {
-    className: string;
+export type MenuFunctionProps = {
+    className: string
 }
 
 const MenuFunctions = (menuFunctionProps: MenuFunctionProps) => {
