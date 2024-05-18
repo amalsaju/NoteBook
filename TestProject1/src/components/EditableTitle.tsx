@@ -14,7 +14,7 @@ const EditableTitle = ({ classname, title, uuid }: EditableTitleProps) => {
 
     const [clicked, setClicked] = useAtom(clickedAtom);
 
-    console.log("Clicked value: " + clicked);
+    // console.log("Clicked value: " + clicked);
 
     const [selectedFile, setSelectedFile] = useAtom(selectedFileAtom);
 
@@ -23,15 +23,25 @@ const EditableTitle = ({ classname, title, uuid }: EditableTitleProps) => {
         setClicked(value);
     }
 
+    const handleTitleChange = (value: string) => {
+        if (uuid != selectedFile.uid) return;
+
+        setSelectedFile((selectedFile) =>
+            ({ ...selectedFile, name: value }))
+
+        console.log("Selected File Name: " + selectedFile.name);
+    }
+
     return (
         <div className={classname}>
             {clicked && uuid == selectedFile.uid ?
-                <input className='text-black w-28 text-center' value={title}
-                    onChange={e => setSelectedFile((selectedFile) =>
-                        ({ ...selectedFile, name: e.target.value }))}
+                <input className='text-black w-28 text-center' value={selectedFile.name}
+                    onChange={e => handleTitleChange(e.target.value)}
                     onBlur={() => handleClick(false)}
-                    onKeyDown={e => e.key === 'Enter' && handleClick(false)} autoFocus={uuid == selectedFile.uid} /> :
-                <button className='w-28' onClick={() => handleClick(true)}>{title + '.md'}</button>}
+                    onKeyDown={e => e.key === 'Enter' && handleClick(false)}
+                    autoFocus={uuid == selectedFile.uid} /> :
+                <button className='w-28' onClick={() => handleClick(true)}>
+                    {(uuid == selectedFile.uid ? selectedFile.name : title) + '.md'}</button>}
         </div>
     );
 
