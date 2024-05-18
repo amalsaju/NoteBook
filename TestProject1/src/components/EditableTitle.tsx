@@ -1,5 +1,5 @@
 import { atom, useAtom, useAtomValue } from 'jotai';
-import { selectedFileAtom } from '../store/store';
+import { notebookFiles, selectedFileAtom } from '../store/store';
 import { useState } from 'react';
 
 export type EditableTitleProps = {
@@ -18,8 +18,15 @@ const EditableTitle = ({ classname, title, uuid }: EditableTitleProps) => {
 
     const [selectedFile, setSelectedFile] = useAtom(selectedFileAtom);
 
+    const files = useAtomValue(notebookFiles);
+
     const handleClick = (value: boolean) => {
-        if (uuid != selectedFile.uid) return;
+        if (uuid != selectedFile.uid) {
+
+            setSelectedFile(files.filter(file => file.uid == uuid)[0]);
+
+            return;
+        }
         setClicked(value);
     }
 
