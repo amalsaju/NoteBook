@@ -15,9 +15,7 @@ try {
         //Electron recommends using ipcRenderer.invoke() whereever possible
         onFileSave: (dataToBeWritten: File) => ipcRenderer.invoke('onFileSave', dataToBeWritten),
         onFileLoad: async () => {
-            const response = await ipcRenderer.invoke('onFileLoad');
-            console.log("Result in preload: " + response);
-            return response;
+            return await ipcRenderer.invoke('onFileLoad');
         },
         closeButtonClick: () => ipcRenderer.invoke('closeButtonClick'),
         minimizeButtonClick: () => ipcRenderer.invoke('minimizeButtonClick'),

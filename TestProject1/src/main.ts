@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu, MenuItem, dialog, ipcMain,  } from 'electron';
+import { app, BrowserWindow, Menu, MenuItem, dialog, ipcMain, } from 'electron';
 import path from 'path';
 import { notebookFilesPath } from './shared/settings';
 import { File } from './shared/types';
@@ -96,17 +96,17 @@ const openFileDialogOptions = {
   ],
 }
 
-ipcMain.handle('onFileLoad', (event, ...args) => {
-  dialog.showOpenDialog(openFileDialogOptions).then(file => {
-    console.log(file.canceled);
-    if (!file.canceled) {
-      console.log(file.filePaths[0].toString());
+ipcMain.handle('onFileLoad', async (event, ...args) => {
+  const { canceled, filePaths } = await dialog.showOpenDialog(openFileDialogOptions);
+  console.log(canceled);
+  if (!canceled) {
+    console.log(filePaths[0].toString());
 
-      const result: string = fs.readFileSync(file.filePaths[0], { encoding: 'utf8' });
-      console.log("Result in main:" + result);
-      return result;
-    }
-  });
+    const result: string = fs.readFileSync(filePaths[0], { encoding: 'utf8' });
+    console.log("Result in main:" + result);
+    return result;
+
+  };
 });
 
 ipcMain.handle('closeButtonClick', (event, ...args) => {

@@ -26,7 +26,7 @@ const MyMarkdown = () => {
   const handleChange = (value: string) => {
     // save selectedFile
     setFile({ ...selectedFile, content: value });
-    console.log(selectedFile.content);
+    console.log("Selected file content: " + selectedFile.content);
   }
 
   useHotkeys(fileSaveKey, () => {
@@ -34,20 +34,24 @@ const MyMarkdown = () => {
     window.electronAPI.onFileSave(selectedFile);
   });
 
-  useHotkeys(fileLoadKey, async () => {
-    console.log("Open key pressed!");
+  async function loadFile() {
     const result = await window.electronAPI.onFileLoad();
-    console.log("the result received is:" + result);
-    // const tempFile: File = new File();
-    // tempFile.content = result;
-    // setFile(tempFile);
+    console.log("Result from Markdown file is: " + result);
+
+    handleChange(result);
+    editorRef.current.setMarkdown(result);
+  }
+
+  useHotkeys(fileLoadKey, () => {
+    console.log("Open key pressed!");
+    loadFile();
   });
 
   return (
     <div className='block mr-3'>
       <MDXEditor
         ref={editorRef}
-        key={selectedFile.uid} markdown={selectedFile.content} onChange={handleChange}
+        key={selectedFile.uid} markdown={selectedFile.content} onChange={handleChange} 
         plugins={[
           // toolbarPlugin({ toolbarContents: () => <KitchenSinkToolbar /> }),
           listsPlugin(),
