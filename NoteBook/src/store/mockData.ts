@@ -1,5 +1,14 @@
 import { File, FileExtension } from "../shared/types";
 
+export const DefaultNote: File = {
+    uid: '1',
+    name: 'Untitled',
+    content: '',
+    extension: FileExtension.markdown,
+    date_created: new Date(),
+    last_modified: new Date(),
+};
+
 export const MockFiles: File[] = [
     {
         uid: '1234',

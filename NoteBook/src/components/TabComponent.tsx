@@ -46,6 +46,13 @@ const TabComponent = ({ classname, title, uuid }: TabComponentProps) => {
 
         console.log("Number of files: " + files.length);
 
+        // This is not working but
+        // you need to check when the last tab is closed
+        if (files.length == 0) {
+
+            window.electronAPI.closeButtonClick();
+        }
+
         if (uuid == selectedFile.uid) {
 
             setSelectedFile(files.filter(file => file.uid != uuid)[0]);

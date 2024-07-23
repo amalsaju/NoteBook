@@ -71,11 +71,12 @@ const saveFileDialogOptions = {
 }
 
 ipcMain.handle('onFileSave', (event, ...args) => {
+  const tempFile: File = args[0];
+  saveFileDialogOptions.defaultPath = saveFileDialogOptions.defaultPath + "\\" + tempFile.name + ".md";
   dialog.showSaveDialog(saveFileDialogOptions).then(file => {
     console.log(file.canceled);
     if (!file.canceled) {
       console.log(file.filePath.toString());
-      const tempFile: File = args[0];
       console.log("Received data:" + tempFile.content);
       // Creating and Writing to the sample.txt file 
       fs.writeFile(file.filePath.toString(),
